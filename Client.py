@@ -197,5 +197,6 @@ async def run_agent():
             logger.warning("Erreur ou déconnexion: %s — reconnexion dans 5s", e)
             await asyncio.sleep(5)
 
+
 if __name__ == "__main__":
     asyncio.run(run_agent())
