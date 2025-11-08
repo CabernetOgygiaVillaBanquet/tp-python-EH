@@ -10,7 +10,7 @@ from pathlib import Path
 import websockets
 from common import make_hmac, timestamp, json_safe_loads
 
-SERVER = "ws://<IP du serveur>:8765"  # Pense à bien remplacer ça par l'ip de ta machine serveur nico/prof
+SERVER = "ws://192.168.100.3:8765"  # Pense à bien remplacer ça par l'ip de ta machine serveur nico/prof
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("simpleagent")
@@ -145,6 +145,10 @@ def cmd_setup_autostart():
         return setup_autostart_windows()
     else:
         return setup_autostart_linux()
+
+def cmd_get_simulated_sensitive():
+    """Simule la récupération de données sensibles (pour démonstration)."""
+    return "Simulated sensitive data: DEMO_PASSWORD_12345"
     
 async def run_agent():
     while True:

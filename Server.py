@@ -27,7 +27,7 @@ COMMANDS = [
     {"id": 0, "cmd": "bye"},
 ]
 
-async def handle_client(ws, path):
+async def handle_client(ws):
     peer = ws.remote_address
     logger.info("[%s] Connexion de %s", current_process().name, peer)
     try:
