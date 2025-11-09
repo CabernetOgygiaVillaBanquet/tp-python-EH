@@ -11,7 +11,7 @@
 
 ---
 
-## 👨‍💻 Auteur
+## 👨‍💻 Auteurs
 
 **Projet réalisé dans le cadre du BIN A3 CYBER - Ethical Hacking**
 
@@ -355,8 +355,6 @@ Ce projet permet d'apprendre :
 1. Augmenter `timeout_duration` dans `Server.py`
 2. Vérifier la connexion réseau
 3. Vérifier les permissions (admin/root)
-
----
 
 ---
 
