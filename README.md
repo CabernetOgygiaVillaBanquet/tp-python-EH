@@ -349,12 +349,7 @@ Ce projet permet d'apprendre :
 
 ---
 
-## 📚 Ressources
 
-- [WebSockets Documentation](https://websockets.readthedocs.io/)
-- [Python multiprocessing](https://docs.python.org/3/library/multiprocessing.html)
-- [HMAC Authentication](https://docs.python.org/3/library/hmac.html)
-- [PSUtil Documentation](https://psutil.readthedocs.io/)
 
 ---
 
@@ -375,15 +370,6 @@ Ce projet permet d'apprendre :
 
 ---
 
-## 🔄 Changelog
 
-### Version 1.0 (Novembre 2025)
-- ✅ Architecture client-serveur WebSocket
-- ✅ Authentification HMAC SHA-256
-- ✅ Support multi-plateforme (Windows/Linux)
-- ✅ Commandes système avancées
-- ✅ Logging détaillé des sessions
-- ✅ Reconnexion automatique du client
-- ✅ Multi-processus serveur (2 workers)
 
 
