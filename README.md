@@ -1,4 +1,4 @@
-# TP Python - Ethical Hacking
+# Projet C2 - Ethical Hacking
 
 ## ⚠️ AVERTISSEMENT IMPORTANT
 
