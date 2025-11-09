@@ -11,6 +11,15 @@
 
 ---
 
+## 👨‍💻 Auteur
+
+**Projet réalisé dans le cadre du BIN A3 CYBER - Ethical Hacking**
+
+- Nicolas Cholin
+- Théotime Ricaux
+
+---
+
 ## 📋 Description
 
 Projet d'architecture client-serveur permettant l'administration et le contrôle à distance de machines Windows et Linux via WebSockets sécurisés. Implémente une authentification par HMAC SHA-256 et supporte l'exécution de commandes système à distance.
@@ -349,10 +358,6 @@ Ce projet permet d'apprendre :
 
 ---
 
-
-
----
-
 ---
 
 ## ⚖️ Licence
@@ -364,11 +369,6 @@ Ce projet permet d'apprendre :
 
 ---
 
-## 👨‍💻 Auteur
-
-**Projet réalisé dans le cadre du BIN A3 CYBER - Ethical Hacking**
-
----
 
 
 
