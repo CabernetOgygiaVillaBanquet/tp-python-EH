@@ -1,55 +1,80 @@
 # TP Python - Ethical Hacking
 
-Projet de client-serveur pour l'administration à distance et tests de sécurité dans un cadre d'ethical hacking.
+## ⚠️ AVERTISSEMENT IMPORTANT
 
-## ⚠️ Avertissement
+**Ce projet est destiné UNIQUEMENT à des fins éducatives et de recherche en cybersécurité.**
 
-**Ce projet est destiné uniquement à des fins éducatives et de recherche en cybersécurité.**  
-L'utilisation de ces outils sur des systèmes sans autorisation explicite est illégale. Utilisez uniquement dans un environnement contrôlé (VM, lab).
+- ⚠️ L'utilisation de ces outils sur des systèmes sans autorisation explicite est **ILLÉGALE**
+- ✅ À utiliser uniquement dans un environnement contrôlé (VM, laboratoire isolé)
+- 🎓 Cadre pédagogique : BIN A3 CYBER - Ethical Hacking
+- ⚖️ L'auteur décline toute responsabilité en cas d'usage malveillant
 
 ---
 
 ## 📋 Description
 
-Ce projet implémente une architecture client-serveur permettant l'administration et le contrôle à distance de machines (Windows/Linux) via WebSockets. Il utilise une authentification HMAC et supporte l'exécution de commandes à distance.
+Projet d'architecture client-serveur permettant l'administration et le contrôle à distance de machines Windows et Linux via WebSockets sécurisés. Implémente une authentification par HMAC SHA-256 et supporte l'exécution de commandes système à distance.
+
+**Technologies utilisées :**
+- 🔌 WebSockets pour la communication temps réel
+- 🔒 HMAC SHA-256 pour l'authentification
+- 🔄 Multi-processus avec fork pour la scalabilité
+- 📝 Logging détaillé des sessions
+- 🖥️ Support cross-platform (Windows/Linux)
+
+---
+
+## 🏗️ Architecture
+
+### 📡 Serveur (`Server.py`)
+
+Serveur WebSocket multi-processus avec les fonctionnalités suivantes :
+
+- ✅ **WebSocket Server** : Écoute sur `0.0.0.0:8765` (configurable)
+- ✅ **Multi-processus** : 2 workers par défaut (configurable via `WORKERS`)
+- ✅ **Authentification HMAC** : Validation cryptographique des clients
+- ✅ **Logging avancé** : Logs de session dans `server_logs/`
+- ✅ **Gestion d'erreurs** : Timeouts, exceptions, reconnexions
+- ✅ **Commandes scriptées** : Exécution séquentielle des commandes
+
+### 🤖 Client (`Client.py`)
+
+Agent multi-plateforme avec auto-reconnexion :
+
+#### Fonctionnalités Communes (Windows/Linux)
+- ✅ Récupération des adresses IP (hors localhost)
+- ✅ Exécution de commandes shell sécurisées (liste blanche)
+- ✅ Captures d'écran (via `mss`)
+- ✅ Configuration du démarrage automatique
+- ✅ Gestion robuste des erreurs et timeouts
+- ✅ Reconnexion automatique en cas de déconnexion
+
+#### Fonctionnalités Spécifiques Windows
+- 🪟 **Récupération base SAM** : Export de `HKLM\SAM` et `HKLM\SYSTEM` (admin requis)
+- 🪟 **Modification du registre** : Création/modification de clés dans le registre
+
+#### Fonctionnalités Spécifiques Linux
+- 🐧 **Récupération passwd/shadow** : Lecture de `/etc/passwd` et `/etc/shadow` (root requis)
+- 🐧 **Exploration système** : Listing récursif de `/root` et `/home`
+
+---
 
 ## 📁 Structure du Projet
 
 ```
-# TP Python - Ethical Hacking - Client/Serveur
+tp-python-EH/
+├── Client.py           # Agent client (Windows/Linux)
+├── Server.py           # Serveur WebSocket multi-processus
+├── common.py           # Fonctions partagées (HMAC, JSON, timestamp)
+├── README.md           # Documentation
+├── screens/            # Captures d'écran (créé automatiquement)
+├── server_logs/        # Logs des sessions (créé automatiquement)
+└── sam_export.hiv      # Export SAM Windows (si utilisé)
+```
 
-## Description
-Projet de démonstration d'un agent client/serveur pour l'ethical hacking avec authentification HMAC et exécution de commandes à distance.
+---
 
-## Architecture
-
-### Serveur (`Server.py`)
-- ✅ Gestion du Socket (WebSocket)
-- ✅ Multi-processus avec fork (2 workers par défaut)
-- ✅ Interpréteur de commandes
-- ✅ Gestion d'erreur complète
-- ✅ Authentification HMAC
-
-### Client (`Client.py`)
-Agent compatible Windows et Linux avec les fonctionnalités suivantes :
-
-#### Fonctionnalités Communes (Windows/Linux)
-- ✅ Gestion d'erreur
-- ✅ Récupération adresses IP (sans localhost)
-- ✅ Démarrage automatique au boot de la VM
-- ✅ Exécution de commandes Shell/PowerShell
-- ✅ Gestion du Socket (connexion au serveur)
-- ✅ Captures d'écran
-
-#### Fonctionnalités Spécifiques Windows
-- ✅ **Récupération de la base SAM** (`get_sam`) - Exporte SAM et SYSTEM (nécessite admin)
-- ✅ **Ajout de clef de registre** (`add_registry`) - Crée/modifie des clefs dans regedit
-
-#### Fonctionnalités Spécifiques Linux
-- ✅ **Récupération /etc/passwd et /etc/shadow** (`get_passwd_shadow`)
-- ✅ **Liste récursive de /root et /home** (`list_root_home`)
-
-## Commandes Disponibles
+## 📜 Commandes Disponibles
 
 | ID  | Commande              | Description                                    | OS      |
 |-----|-----------------------|------------------------------------------------|---------|
@@ -64,45 +89,117 @@ Agent compatible Windows et Linux avec les fonctionnalités suivantes :
 | 9   | `get_sam`             | Exporte la base SAM Windows                    | Windows |
 | 10  | `add_registry`        | Ajoute une clef dans le registre Windows       | Windows |
 | 11  | `get_passwd_shadow`   | Récupère /etc/passwd et /etc/shadow            | Linux   |
-| 12  | `list_root_home`      | Liste /root et /home récursivement             | Linux   |
+| 12  | `list_root_home`      | Liste /root et /home récursivement             | Linux   | Root       |
 
-## Installation
+### 🔒 Commandes Shell Autorisées (Liste Blanche)
+
+Pour des raisons de sécurité, seules ces commandes shell sont autorisées :
+- `echo hello from server`
+- `whoami`
+- `hostname`
+- `ipconfig` (Windows) / `ip a` (Linux)
+- `dir` (Windows) / `ls -la` (Linux)
+
+---
+
+## 🚀 Installation
+
+### Prérequis
+
+- Python 3.7+
+- pip (gestionnaire de paquets Python)
 
 ### Dépendances
+
 ```bash
-# Windows et Linux
+# Installation des dépendances (Windows et Linux)
 pip install websockets psutil mss
 ```
 
 ### Configuration
-1. **Serveur** : Modifier `HOST` et `PORT` dans `Server.py` si nécessaire
-2. **Client** : Modifier `SERVER` dans `Client.py` avec l'IP du serveur
-3. **Secret** : La clef HMAC est dans `common.py` (SECRET_KEY)
 
-## Utilisation
+#### 1. Configuration du Serveur (`Server.py`)
 
-### Démarrer le serveur
+```python
+HOST = "0.0.0.0"      # Interface d'écoute (0.0.0.0 = toutes)
+PORT = 8765           # Port d'écoute
+WORKERS = 2           # Nombre de processus workers
+```
+
+#### 2. Configuration du Client (`Client.py`)
+
+```python
+SERVER = "ws://192.168.100.3:8765"  # Remplacer par l'IP du serveur
+```
+
+#### 3. Clé Secrète (`common.py`)
+
+```python
+SECRET_KEY = b"supersecretkey123"   # ⚠️ Changer en production !
+```
+
+---
+
+---
+
+## 💻 Utilisation
+
+### Démarrer le Serveur
+
 ```bash
+# Sur la machine serveur
 python Server.py
 ```
 
-### Démarrer le client
+**Sortie attendue :**
+```
+INFO Spawned worker-1 pid=1234
+INFO Spawned worker-2 pid=1235
+INFO [worker-1] Worker 1234 écoute sur 0.0.0.0:8765
+INFO [worker-2] Worker 1235 écoute sur 0.0.0.0:8765
+```
+
+### Démarrer le Client
+
 ```bash
-# Windows
+# Sur la machine cible (Windows)
 python Client.py
 
-# Linux (peut nécessiter sudo pour certaines commandes)
+# Sur la machine cible (Linux - certaines commandes nécessitent root)
 sudo python Client.py
 ```
 
-## Exemples de Commandes Serveur
+**Le client va :**
+1. Se connecter au serveur
+2. S'authentifier via HMAC
+3. Recevoir et exécuter les commandes
+4. Renvoyer les résultats
+5. Se reconnecter automatiquement en cas de déconnexion
 
-### Commande Windows - Récupération SAM
+---
+
+---
+
+## 📝 Exemples de Commandes
+
+Le serveur envoie automatiquement une séquence de commandes prédéfinies dans `COMMANDS`. Voici quelques exemples :
+
+### Exemple 1 : Récupération SAM (Windows - Admin requis)
+
 ```python
 {"id": 9, "cmd": "get_sam"}
 ```
 
-### Commande Windows - Ajout Registre
+**Résultat attendu :**
+```
+SAM database exportée:
+- SAM: C:\...\sam_export.hiv (262144 bytes)
+- SYSTEM: C:\...\system_export.hiv (8388608 bytes)
+Utilisez des outils comme samdump2 ou impacket pour extraire les hash
+```
+
+### Exemple 2 : Ajout Clé Registre (Windows)
+
 ```python
 {
     "id": 10, 
@@ -116,43 +213,94 @@ sudo python Client.py
 }
 ```
 
-### Commande Linux - Passwd/Shadow
+### Exemple 3 : Récupération Passwd/Shadow (Linux - Root requis)
+
 ```python
 {"id": 11, "cmd": "get_passwd_shadow"}
 ```
 
-### Commande Linux - Liste /root et /home
+### Exemple 4 : Listing Système (Linux)
+
 ```python
 {"id": 12, "cmd": "list_root_home"}
 ```
 
-## Sécurité
+### Exemple 5 : Capture d'écran
 
-⚠️ **AVERTISSEMENT** : Ce code est à des fins éducatives uniquement.
-- N'utilisez jamais sur des systèmes sans autorisation
-- Certaines fonctions nécessitent des privilèges élevés (admin/root)
-- L'authentification HMAC utilise une clef partagée (à changer en production)
-
-## Structure des Fichiers
-
-```
-tp-python-EH/
-├── Client.py          # Agent client (Windows/Linux)
-├── Server.py          # Serveur de commande et contrôle
-├── common.py          # Fonctions partagées (HMAC, JSON, timestamp)
-└── README.md          # Cette documentation
+```python
+{"id": 5, "cmd": "screenshot"}
 ```
 
-## Auteur
-Projet TP - BIN A3 CYBER - Ethical Hacking
-/
-│
-├── Server.py           # Serveur WebSocket multi-processus
-├── Client.py           # Agent client
-├── README.md          # Documentation
-│
-└── screens/           # Dossier des captures d'écran (créé automatiquement)
+**Résultat :**
 ```
+screenshot saved to C:\...\screens\screenshot.png
+```
+
+---
+
+## 📊 Logs et Traçabilité
+
+### Logs Serveur
+
+Les logs de session sont automatiquement créés dans `server_logs/` :
+
+```
+server_logs/
+├── session_DESKTOP-ABC123_20251109_143052.log
+├── session_ubuntu-vm_20251109_143125.log
+└── ...
+```
+
+**Contenu d'un log :**
+```
+2025-11-09 14:30:52 - === NOUVELLE SESSION ===
+2025-11-09 14:30:52 - Client: DESKTOP-ABC123 (Windows)
+2025-11-09 14:30:52 - IP: ('192.168.100.50', 54321)
+
+2025-11-09 14:30:52 - >>> Commande envoyée: whoami (ID: 1)
+2025-11-09 14:30:52 - <<< Réponse (Status: ok):
+DESKTOP-ABC123\admin
+--------------------------------------------------------------------------------
+...
+```
+
+---
+
+---
+
+## 🔒 Sécurité
+
+### Mécanisme d'Authentification HMAC
+
+```python
+# Création du HMAC côté client
+hello = {"os": "Windows", "name": "PC-123", "ts": 1699534252}
+minimal = json.dumps({"os": hello["os"], "name": hello["name"], "ts": hello["ts"]})
+signature = hmac.new(SECRET_KEY, minimal.encode(), hashlib.sha256).hexdigest()
+
+# Vérification côté serveur
+verify_hmac(minimal.encode(), signature)  # True si valide
+```
+
+### ⚠️ Points d'Attention
+
+- **Clé secrète** : `SECRET_KEY` est partagée → changer en production
+- **Privilèges élevés** : Certaines commandes nécessitent admin/root
+- **Liste blanche** : Les commandes shell sont limitées pour éviter les abus
+- **Timeouts** : 30s par défaut, 120s pour les commandes sensibles
+- **Logs** : Toutes les sessions sont tracées dans `server_logs/`
+
+### Recommandations
+
+1. ✅ Utiliser uniquement dans un environnement isolé (VM)
+2. ✅ Changer `SECRET_KEY` avant utilisation
+3. ✅ Restreindre les commandes autorisées selon les besoins
+4. ✅ Surveiller les logs régulièrement
+5. ✅ Ne jamais exposer le serveur sur Internet sans protection supplémentaire
+
+---
+
+---
 
 ## 🎓 Objectifs Pédagogiques
 
@@ -160,22 +308,82 @@ Ce projet permet d'apprendre :
 
 1. **Programmation réseau** : WebSockets, protocoles client-serveur
 2. **Sécurité** : HMAC, authentification, validation des entrées
-3. **Programmation système** : Commandes shell, fichiers système
-4. **Multiprocessing** : Fork, workers parallèles
-5. **Gestion d'erreurs** : Try/except, timeouts, logging
+3. **Programmation système** : Commandes shell, accès fichiers système
+4. **Multiprocessing** : Fork, workers parallèles, gestion de processus
+5. **Gestion d'erreurs** : Try/except, timeouts, reconnexions
 6. **Cross-platform** : Code compatible Windows/Linux
+7. **Logging** : Traçabilité et debugging
+8. **Ethical Hacking** : Techniques d'administration à distance
+
+---
+
+## 🐛 Dépannage
+
+### Problème : Client ne se connecte pas
+
+**Solution :**
+1. Vérifier que le serveur est démarré
+2. Vérifier l'IP dans `Client.py` → `SERVER = "ws://IP:8765"`
+3. Vérifier le pare-feu (autoriser port 8765)
+4. Vérifier les logs serveur
+
+### Problème : Authentification échouée
+
+**Solution :**
+1. Vérifier que `SECRET_KEY` est identique dans `common.py` (client et serveur)
+2. Vérifier les logs : `Auth failed`
+
+### Problème : Commandes Windows échouent
+
+**Solution :**
+1. Exécuter `Client.py` en tant qu'administrateur (pour `get_sam`, etc.)
+2. Vérifier UAC (User Account Control)
+3. Consulter les logs de session
+
+### Problème : Timeout sur certaines commandes
+
+**Solution :**
+1. Augmenter `timeout_duration` dans `Server.py`
+2. Vérifier la connexion réseau
+3. Vérifier les permissions (admin/root)
+
+---
+
+## 📚 Ressources
+
+- [WebSockets Documentation](https://websockets.readthedocs.io/)
+- [Python multiprocessing](https://docs.python.org/3/library/multiprocessing.html)
+- [HMAC Authentication](https://docs.python.org/3/library/hmac.html)
+- [PSUtil Documentation](https://psutil.readthedocs.io/)
+
+---
 
 ---
 
 ## ⚖️ Licence
 
-Ce projet est destiné uniquement à des fins éducatives dans le cadre du cours d'Ethical Hacking.
+**Ce projet est destiné uniquement à des fins éducatives** dans le cadre du cours d'Ethical Hacking.
 
-**Ne pas utiliser sur des systèmes sans autorisation explicite.**
+❌ **NE PAS UTILISER sur des systèmes sans autorisation explicite**  
+❌ **L'auteur décline toute responsabilité en cas d'usage malveillant**
 
 ---
 
 ## 👨‍💻 Auteur
 
-Projet réalisé dans le cadre du BIN A3 CYBER - Ethical Hacking
+**Projet réalisé dans le cadre du BIN A3 CYBER - Ethical Hacking**
+
+---
+
+## 🔄 Changelog
+
+### Version 1.0 (Novembre 2025)
+- ✅ Architecture client-serveur WebSocket
+- ✅ Authentification HMAC SHA-256
+- ✅ Support multi-plateforme (Windows/Linux)
+- ✅ Commandes système avancées
+- ✅ Logging détaillé des sessions
+- ✅ Reconnexion automatique du client
+- ✅ Multi-processus serveur (2 workers)
+
 
