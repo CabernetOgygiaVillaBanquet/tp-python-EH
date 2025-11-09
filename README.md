@@ -78,7 +78,7 @@ tp-python-EH/
 ├── README.md           # Documentation
 ├── screens/            # Captures d'écran (créé automatiquement)
 ├── server_logs/        # Logs des sessions (créé automatiquement)
-└── sam_export.hiv      # Export SAM Windows (si utilisé)
+└── sam.hiv et system.hiv # Export SAM Windows
 ```
 
 ---
